@@ -93,6 +93,7 @@ function createHeightBuffer(cellSize: number): number[][][] {
 // タイトルシーン生成
 //
 export function createTitleScene(): g.Scene {
+    // "version" は未使用。使用する場合は npm run build:version で version.txt 生成すること。
     const scene = new g.Scene({ game: g.game, assetIds: ["version"] });
 
     scene.onLoad.add(() => {

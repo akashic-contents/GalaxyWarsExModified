@@ -1,37 +1,36 @@
-var Global = require("./Global");
-var math = require("./Math");
-var Particle = require("./Particle");
-
-var game = g.game;
+import { Global } from "./Global";
+import * as math from "./Math";
+import { Particle } from "./Particle";
+import { Player } from "./Player";
 
 //
 // 被弾エフェクト（大）
 //
-function emmitDamageEffect(entity) {
-    var th = math.random() * Math.PI * 2;
-    var spd = 750;
-    var imageAsset = game.assets["particle"];
+export function emmitDamageEffect(entity: Player | Particle): void {
+    const th = math.random() * Math.PI * 2;
+    const spd = 750;
+    const imageAsset = Global.gameCore.scene.asset.getImageById("particle");
 
-    var p = new Particle({
+    const p = new Particle({
         pos: { x: entity.pos.x + entity.spr.width / 2, y: entity.pos.y + entity.spr.height / 2 },
         vel: { x: spd * Math.cos(th), y: spd * Math.sin(th) },
         drag: 4,
         grav: 500,
-        life: game.fps,
+        life: g.game.fps,
         asset: imageAsset,
-        onUpdate: function(p) {
+        onUpdate: (p) => {
             if (p.vel.y > 0) {
                 p.spr.opacity *= 0.9;
             }
             if (p.cntr % 3 === 0) {
-                var p2 = new Particle({
+                const p2 = new Particle({
                     pos: p.pos,
                     vel: { x: 0, y: 0 },
                     drag: 0,
                     grav: 0,
                     life: 8,
                     asset: imageAsset,
-                    onUpdate: function(p) {
+                    onUpdate: (p) => {
                         p.spr.opacity *= 0.9;
                         p.spr.modified();
                     }
@@ -47,5 +46,3 @@ function emmitDamageEffect(entity) {
 
     Global.gameCore.entities.push(p);
 }
-
-module.exports = emmitDamageEffect;

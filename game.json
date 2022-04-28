@@ -2,12 +2,8 @@
 	"width": 512,
 	"height": 384,
 	"fps": 30,
+	"main": "./script/main.js",
 	"assets": {
-		"mainScene": {
-			"type": "script",
-			"path": "script/mainScene.js",
-			"global": true
-		},
 		"font16": {
 			"type": "image",
 			"width": 256,
@@ -174,84 +170,18 @@
 			"path": "image/sparkle.png",
 			"global": true
 		},
-		"ScreenEffector": {
-			"type": "script",
-			"path": "script/ScreenEffector.js",
-			"global": true
-		},
-		"titleScene": {
-			"type": "script",
-			"path": "script/titleScene.js",
-			"global": true
-		},
-		"Math": {
-			"type": "script",
-			"path": "script/Math.js",
-			"global": true
-		},
-		"EntityType": {
-			"type": "script",
-			"path": "script/EntityType.js",
-			"global": true
-		},
-		"Player": {
-			"type": "script",
-			"path": "script/Player.js",
-			"global": true
-		},
-		"gameScene": {
-			"type": "script",
-			"path": "script/gameScene.js",
-			"global": true
-		},
-		"Global": {
-			"type": "script",
-			"path": "script/Global.js",
-			"global": true
-		},
-		"ItemType": {
-			"type": "script",
-			"path": "script/ItemType.js",
-			"global": true
-		},
-		"Shield": {
-			"type": "script",
-			"path": "script/Shield.js",
-			"global": true
-		},
-		"Bullet": {
-			"type": "script",
-			"path": "script/Bullet.js",
-			"global": true
-		},
-		"Particle": {
-			"type": "script",
-			"path": "script/Particle.js",
-			"global": true
-		},
-		"emmitDamageEffect": {
-			"type": "script",
-			"path": "script/emmitDamageEffect.js",
-			"global": true
-		},
-		"Enemy": {
-			"type": "script",
-			"path": "script/Enemy.js",
-			"global": true
-		},
-		"Item": {
-			"type": "script",
-			"path": "script/Item.js",
-			"global": true
-		},
-		"ItemGaugeTray": {
-			"type": "script",
-			"path": "script/ItemGaugeTray.js",
-			"global": true
+		"version": {
+			"type": "text",
+			"path": "text/version.txt"
 		},
 		"AlphaEnemy": {
 			"type": "script",
 			"path": "script/AlphaEnemy.js",
+			"global": true
+		},
+		"Background": {
+			"type": "script",
+			"path": "script/Background.js",
 			"global": true
 		},
 		"BetaEnemy": {
@@ -259,9 +189,14 @@
 			"path": "script/BetaEnemy.js",
 			"global": true
 		},
-		"GammaEnemy": {
+		"Bullet": {
 			"type": "script",
-			"path": "script/GammaEnemy.js",
+			"path": "script/Bullet.js",
+			"global": true
+		},
+		"Enemy": {
+			"type": "script",
+			"path": "script/Enemy.js",
 			"global": true
 		},
 		"EnemyManager": {
@@ -269,9 +204,9 @@
 			"path": "script/EnemyManager.js",
 			"global": true
 		},
-		"Background": {
+		"EntityType": {
 			"type": "script",
-			"path": "script/Background.js",
+			"path": "script/EntityType.js",
 			"global": true
 		},
 		"GameCore": {
@@ -284,17 +219,84 @@
 			"path": "script/GameOverLogo.js",
 			"global": true
 		},
+		"GammaEnemy": {
+			"type": "script",
+			"path": "script/GammaEnemy.js",
+			"global": true
+		},
+		"Global": {
+			"type": "script",
+			"path": "script/Global.js",
+			"global": true
+		},
+		"Item": {
+			"type": "script",
+			"path": "script/Item.js",
+			"global": true
+		},
+		"ItemGaugeTray": {
+			"type": "script",
+			"path": "script/ItemGaugeTray.js",
+			"global": true
+		},
+		"ItemType": {
+			"type": "script",
+			"path": "script/ItemType.js",
+			"global": true
+		},
+		"Math": {
+			"type": "script",
+			"path": "script/Math.js",
+			"global": true
+		},
+		"Particle": {
+			"type": "script",
+			"path": "script/Particle.js",
+			"global": true
+		},
+		"Player": {
+			"type": "script",
+			"path": "script/Player.js",
+			"global": true
+		},
 		"PlayerStatus": {
 			"type": "script",
 			"path": "script/PlayerStatus.js",
 			"global": true
 		},
-		"version": {
-			"type": "text",
-			"path": "text/version.txt"
+		"ScreenEffector": {
+			"type": "script",
+			"path": "script/ScreenEffector.js",
+			"global": true
+		},
+		"Shield": {
+			"type": "script",
+			"path": "script/Shield.js",
+			"global": true
+		},
+		"emmitDamageEffect": {
+			"type": "script",
+			"path": "script/emmitDamageEffect.js",
+			"global": true
+		},
+		"gameScene": {
+			"type": "script",
+			"path": "script/gameScene.js",
+			"global": true
+		},
+		"main": {
+			"type": "script",
+			"path": "script/main.js",
+			"global": true
+		},
+		"titleScene": {
+			"type": "script",
+			"path": "script/titleScene.js",
+			"global": true
 		}
 	},
 	"environment": {
+		"sandbox-runtime": "3",
 		"niconico": {
 			"supportedModes": [
 				"ranking"

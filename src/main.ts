@@ -1,20 +1,20 @@
-var Global = require("./Global");
-var createTitleScene = require("./titleScene");
+import { Global } from "./Global";
+import { createTitleScene } from "./titleScene";
 
 //
 // エントリーポイント
 //
-module.exports = function() {
+export = function () {
     Global.bmpFont = new g.BitmapFont({
-        src: g.game.assets["font16"],
-        map: JSON.parse(g.game.assets["glyph_area"].data),
+        src: g.game.scene().asset.getImageById("font16"),
+        map: g.game.scene().asset.getJSONContentById("glyph_area"),
         defaultGlyphWidth: 16,
         defaultGlyphHeight: 16
     });
 
-    var scene = createTitleScene();
+    const scene = createTitleScene();
 
-    scene.message.handle(function(e) {
+    scene.onMessage.add((e) => {
         if (e.data.type === "start") {
             console.log("param: " + JSON.stringify(e.data.parameters));
             Global.params = e.data.parameters; // 起動パラメータ保存
@@ -26,5 +26,5 @@ module.exports = function() {
         isFinished: false
     };
 
-    return scene;
-}
+    g.game.pushScene(scene);
+};

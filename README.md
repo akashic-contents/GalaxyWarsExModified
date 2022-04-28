@@ -12,6 +12,7 @@
 git clone git@github.com:akashic-contents/GalaxyWarsEx.git
 cd GalaxyWarsEx
 npm install
+npm run build
 npm start # akashic-sandbox を起動する
 ```
 

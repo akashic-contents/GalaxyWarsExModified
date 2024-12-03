@@ -421,6 +421,20 @@
 			"width": 32,
 			"height": 32,
 			"global": true
+		},
+		"itemNew04": {
+			"type": "image",
+			"path": "image/itemNew04.png",
+			"width": 32,
+			"height": 32,
+			"global": true
+		},
+		"special": {
+			"type": "image",
+			"path": "image/special.png",
+			"width": 32,
+			"height": 32,
+			"global": true
 		}
 	},
 	"environment": {

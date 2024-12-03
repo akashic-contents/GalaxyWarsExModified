@@ -7,6 +7,7 @@ import { emmitDamageEffect } from "./emmitDamageEffect";
 
 export class Player {
     static MAX_HP = 30; // プレイヤー最大HP 10->30に変更
+    static MAX_SP = 7;
 
     private obstacles: number[];
     private type: EntityType;
@@ -22,6 +23,7 @@ export class Player {
     shieldCntr = 0;
     score = 0;
     hp = 0;
+    sp = 0;
 
     constructor() {
         this.reset();
@@ -91,6 +93,10 @@ export class Player {
 
                 case ItemType.RECOVER:
                     if (this.hp < Player.MAX_HP) this.hp++;
+                    break;
+
+                case ItemType.CHARGE:
+                    this.sp = Player.MAX_SP;
                     break;
 
                 default:
@@ -189,5 +195,44 @@ export class Player {
 
     getSpeed(): number {
         return this.speed;
+    }
+
+    addSp(pt: number) {
+        this.sp += pt;
+        if (this.sp > Player.MAX_SP) {
+            this.sp = Player.MAX_SP;
+        }
+    }
+
+    /**
+     * 必殺技実行メソッド
+     */
+    specialAttack(): void {
+        if (this.sp < Player.MAX_SP) {
+            return;
+        }
+        this.sp = 0;
+        const imageAsset = g.game.scene().asset.getImageById("special");
+        const speed = 10;
+        const power = 10;
+        const halfCount = 5;
+        const angleInterval = 90 / halfCount;
+        // 等間隔で放射状に大きめの弾を同時発射(直線上の弾は敢えて二重にして2倍の威力にしている)
+        for (let i = -1; i < 2; i += 2) {
+            for (let j = 0; j < halfCount; j++) {
+                const angle = 90 + i * angleInterval * j;
+                const radian = angle * (Math.PI / 180);
+                Global.gameCore.entities.push(new Bullet({
+                    type: EntityType.PLAYER_BULLET,
+                    obstacles: [EntityType.ENEMY],
+                    pos: { x: this.pos.x + this.spr.width / 2, y: this.pos.y },
+                    vel: { x: speed * Math.cos(radian), y: -1 * speed * Math.sin(radian) },
+                    hp: power,
+                    homing: false,
+                    imageAsset
+                }));
+            }
+        }
+        g.game.scene().asset.getAudioById("special_attack").play();
     }
 }

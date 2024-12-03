@@ -1,5 +1,8 @@
 // ゲームUIに関するモジュールをこのファイルにまとめた
 
+import { Global } from "./Global";
+import { Player } from "./Player";
+
 /**
  * バーチャルゲームパッドのエンティティを生成する関数
  */
@@ -64,5 +67,65 @@ export function createGameStickEntity(
         func({ x: (gameStick.x - gameStickInitialX) / (width / 2), y: (gameStick.y - gameStickInitialY) / (height / 2) });
     });
     entity.append(gameStick);
+    return entity;
+}
+
+/**
+ * 必殺技ボタンのエンティティを生成する関数
+ */
+export function createSpecialAttackButton(scene: g.Scene, area: g.CommonArea): g.E  {
+    const entity = new g.E({
+        scene,
+        x: area.x,
+        y: area.y,
+        width: area.width,
+        height: area.height,
+        touchable: true
+    });
+    const backRect = new g.FilledRect({
+        scene,
+        width: area.width,
+        height: area.height,
+        cssColor: "gray"
+    });
+    entity.append(backRect);
+    const label = new g.Label({
+        scene,
+        text: "SPECIAL",
+        font: Global.bmpFont,
+        fontSize: 16
+    });
+    entity.append(label);
+    const gageRect = new g.FilledRect({
+        scene,
+        width: 0,
+        height: area.height,
+        cssColor: "green",
+        opacity: 0.7
+    });
+    entity.append(gageRect);
+    let ableButton = false;
+
+    entity.onPointDown.add(() => {
+        if (!ableButton) {
+            g.game.scene().asset.getAudioById("disable").play();
+            return;
+        }
+        ableButton = false;
+        Global.gameCore.player.specialAttack();
+    })
+    entity.onUpdate.add(() => {
+        const rate = Global.gameCore.player.sp / Player.MAX_SP;
+        if (rate === 1) {
+            ableButton = true;
+            gageRect.opacity = ((g.game.age % 5) / 4) * 0.5 + 0.2;
+        } else {
+            ableButton = false;
+            gageRect.opacity = 0.7;
+        }
+        gageRect.width = Math.round(rate * area.width);
+        gageRect.modified();
+    });
+
     return entity;
 }

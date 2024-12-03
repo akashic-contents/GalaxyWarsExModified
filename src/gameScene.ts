@@ -1,7 +1,7 @@
 import { Global } from "./Global";
 import { GameCore } from "./GameCore";
 import { GameOverLogo } from "./GameOverLogo";
-import { createGameStickEntity } from "./gameUi";
+import { createGameStickEntity, createSpecialAttackButton } from "./gameUi";
 
 //
 // ゲームシーン生成
@@ -47,6 +47,19 @@ export function createGameScene(): g.Scene {
             }
         );
         scene.append(gameStick);
+        // Specialボタンの追加
+        const specialButtonWidth = 120;
+        const specialButtonHeight = 30;
+        const specialButton = createSpecialAttackButton(
+            scene,
+            {
+                x: g.game.width - specialButtonWidth - 12,
+                y: g.game.height - gameStickBackSize - specialButtonHeight - 24,
+                width: specialButtonWidth,
+                height: specialButtonHeight
+            }
+        );
+        scene.append(specialButton);
 
         const timeGaugeWidth = g.game.width;
         const timeGauge = new g.FilledRect({

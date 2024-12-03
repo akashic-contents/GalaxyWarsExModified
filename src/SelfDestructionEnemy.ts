@@ -12,7 +12,8 @@ export class SelfDestructionEnemy extends Enemy {
         const x = math.random() * (g.game.width - imageAsset.width);
         const y = -20;
         const itemTypes = [
-            ItemType.SHIELD
+            ItemType.SHIELD,
+            ItemType.CHARGE
         ];
 
         super({

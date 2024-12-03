@@ -6,7 +6,7 @@ import { Bullet } from "./Bullet";
 import { emmitDamageEffect } from "./emmitDamageEffect";
 
 export class Player {
-    static MAX_HP = 10; // プレイヤー最大HP
+    static MAX_HP = 30; // プレイヤー最大HP 10->30に変更
 
     private obstacles: number[];
     private type: EntityType;

@@ -104,6 +104,8 @@ export class Player {
             for (let i = 0; i < 3; i++) {
                 emmitDamageEffect(this);
             }
+            // ダメージ処理に合わせて、ダメージ用SEを鳴らす
+            g.game.scene().asset.getAudioById("damege").play();
         }
     }
 

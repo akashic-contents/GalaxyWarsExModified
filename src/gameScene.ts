@@ -32,12 +32,17 @@ export function createGameScene(): g.Scene {
             scene: scene,
             width: timeGaugeWidth,
             height: 4,
-            cssColor: "Red"
+            cssColor: "green"
         });
         scene.append(timeGauge);
 
+        // ステージBGM再生
+        let stageBgm = scene.asset.getAudioById("bgm_normal");
+        stageBgm.play();
+
         // game loop
         let showResultUI = false;
+        let startCountDownBgm = false; // BGM変更用フラグ
         scene.onUpdate.add(() => {
             Global.gameCore.update();
 
@@ -45,10 +50,28 @@ export function createGameScene(): g.Scene {
 
             const maxPlayTimeInFPS = GameCore.MAX_PLAYTIME * g.game.fps;
             const remainTimeRate = Math.max(maxPlayTimeInFPS - Global.gameCore.cntr, 0) / maxPlayTimeInFPS;
+            const remainTime = Math.floor(GameCore.MAX_PLAYTIME - Global.gameCore.cntr / g.game.fps);
+            // 残り時間によってバーやラベルの色を変えてプレイヤーの危機感を煽るように
+            if (remainTime <= 10) {
+                timeGauge.cssColor = "red";
+                // 残り時間が少なくなったらBGMを変える
+                if (Global.gameCore.player.hp > 0 && !startCountDownBgm) {
+                    startCountDownBgm = true;
+                    stageBgm.stop();
+                    stageBgm = scene.asset.getAudioById("bgm_near_timeout");
+                    stageBgm.play();
+                }
+            } else if (remainTime <= 30) {
+                timeGauge.cssColor = "yellow";
+            }
             timeGauge.width = timeGaugeWidth * remainTimeRate;
             timeGauge.modified();
 
             if (!showResultUI && Global.gameCore.player.hp <= 0) {
+                // ゲームオーバー処理なのでここでゲームオーバー用BGM(ループなし)を鳴らす
+                stageBgm.stop();
+                g.game.scene().asset.getAudioById("bgm_gameover").play();
+
                 scene.onPointDownCapture.removeAll();
                 scene.onPointMoveCapture.removeAll();
                 scene.onPointUpCapture.removeAll();

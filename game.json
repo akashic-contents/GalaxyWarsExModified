@@ -397,6 +397,18 @@
 				]
 			},
 			"global": true
+		},
+		"gameUi": {
+			"type": "script",
+			"path": "script/gameUi.js",
+			"global": true
+		},
+		"gameStick": {
+			"type": "image",
+			"path": "image/gameStick.png",
+			"width": 200,
+			"height": 200,
+			"global": true
 		}
 	},
 	"environment": {

@@ -16,6 +16,7 @@ export class Player {
     private bulletSpeedCntr = 0;
     private bulletCntr = 0;
     private bulletInterval = 10;
+    private speed = 5;
     pos: g.CommonOffset;
     spr: g.Sprite;
     shieldCntr = 0;
@@ -184,5 +185,9 @@ export class Player {
      */
     destroy(): void {
         this.spr.destroy();
+    }
+
+    getSpeed(): number {
+        return this.speed;
     }
 }

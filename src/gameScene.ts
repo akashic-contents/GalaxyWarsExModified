@@ -1,6 +1,7 @@
 import { Global } from "./Global";
 import { GameCore } from "./GameCore";
 import { GameOverLogo } from "./GameOverLogo";
+import { createGameStickEntity } from "./gameUi";
 
 //
 // ゲームシーン生成
@@ -26,6 +27,26 @@ export function createGameScene(): g.Scene {
         scene.onPointUpCapture.add(() => {
             clicked = false;
         });
+        // 自機操作方法としてバーチャルスティックも追加
+        const gameStickBackSize = 100;
+        const gameStickSize = 72;
+        const gameStick = createGameStickEntity(
+            scene,
+            Global.gameCore.scene.asset.getImageById("gameStick"),
+            { x: g.game.width - gameStickBackSize - 12, y: g.game.height - gameStickBackSize - 12, width: gameStickBackSize, height: gameStickBackSize },
+            { width: gameStickSize, height: gameStickSize },
+            (offset) => {
+                const speed = Global.gameCore.player.getSpeed();
+                let dx = Math.round(offset.x * speed);
+                let dy = Math.round(offset.y * speed);
+                // バーチャルスティックが使われている時は既存の入力法を使わないように
+                if (dx !== 0 || dy !== 0) {
+                    clicked = false;
+                }
+                Global.gameCore.player.move(dx, dy);
+            }
+        );
+        scene.append(gameStick);
 
         const timeGaugeWidth = g.game.width;
         const timeGauge = new g.FilledRect({

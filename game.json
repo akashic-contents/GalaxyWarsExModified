@@ -409,6 +409,18 @@
 			"width": 200,
 			"height": 200,
 			"global": true
+		},
+		"SelfDestructionEnemy": {
+			"type": "script",
+			"path": "script/SelfDestructionEnemy.js",
+			"global": true
+		},
+		"selfDestructionEnemy": {
+			"type": "image",
+			"path": "image/selfDestructionEnemy.png",
+			"width": 32,
+			"height": 32,
+			"global": true
 		}
 	},
 	"environment": {

@@ -36,6 +36,16 @@ export function createGameScene(): g.Scene {
         });
         scene.append(timeGauge);
 
+        // 残り時間表示ラベル
+        const timeLabel = new g.Label({
+            scene: Global.gameCore.scene,
+            text: "",
+            font: Global.bmpFont,
+            fontSize: 16,
+            x: g.game.width - (16 * 9 + 4), y: 4
+        });
+        scene.append(timeLabel);
+
         // ステージBGM再生
         let stageBgm = scene.asset.getAudioById("bgm_normal");
         stageBgm.play();
@@ -54,6 +64,7 @@ export function createGameScene(): g.Scene {
             // 残り時間によってバーやラベルの色を変えてプレイヤーの危機感を煽るように
             if (remainTime <= 10) {
                 timeGauge.cssColor = "red";
+                timeLabel.textColor = "red";
                 // 残り時間が少なくなったらBGMを変える
                 if (Global.gameCore.player.hp > 0 && !startCountDownBgm) {
                     startCountDownBgm = true;
@@ -66,6 +77,8 @@ export function createGameScene(): g.Scene {
             }
             timeGauge.width = timeGaugeWidth * remainTimeRate;
             timeGauge.modified();
+            timeLabel.text = `TIME: ${remainTime > 0 ? remainTime : 0}`;
+            timeLabel.invalidate();
 
             if (!showResultUI && Global.gameCore.player.hp <= 0) {
                 // ゲームオーバー処理なのでここでゲームオーバー用BGM(ループなし)を鳴らす

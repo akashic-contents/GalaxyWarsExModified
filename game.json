@@ -298,7 +298,8 @@
 			"type": "audio",
 			"path": "audio/bgm_gameover",
 			"systemId": "sound",
-			"duration": 31556,
+			"offset": 0,
+			"duration": 8000,
 			"hint": {
 				"extensions": [
 					".m4a",

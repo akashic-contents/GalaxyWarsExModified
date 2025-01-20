@@ -17,7 +17,7 @@ export class Player {
     private bulletSpeedCntr = 0;
     private bulletCntr = 0;
     private bulletInterval = 10;
-    private speed = 5;
+    private speed = 15;
     pos: g.CommonOffset;
     spr: g.Sprite;
     shieldCntr = 0;

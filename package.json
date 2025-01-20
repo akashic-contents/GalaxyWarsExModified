@@ -1,6 +1,6 @@
 {
   "name": "@akashic-contents/galaxy-wars-ex",
-  "version": "1.0.0-ex",
+  "version": "0.0.1",
   "private": true,
   "description": "Akashic Engine製ゲーム・GalaxyWarsEx",
   "main": "index.js",

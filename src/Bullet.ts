@@ -116,6 +116,10 @@ export class Bullet {
         let dir = null;
         if (e.hp > 0) {
             dir = { x: this.pos.x - this.prevPos.x, y: this.pos.y - this.prevPos.y };
+            if (this.type === EntityType.PLAYER_BULLET) {
+                const hitSe = g.game.scene().asset.getAudioById("hit").play();
+                hitSe.changeVolume(0.5);
+            }
         }
         Global.gameCore.entities.push(new HitEffectEmitter(e, dir));
 

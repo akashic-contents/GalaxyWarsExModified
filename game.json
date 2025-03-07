@@ -294,19 +294,6 @@
 			"path": "script/titleScene.js",
 			"global": true
 		},
-		"bgm_gameover": {
-			"type": "audio",
-			"path": "audio/bgm_gameover",
-			"systemId": "sound",
-			"duration": 31556,
-			"hint": {
-				"extensions": [
-					".m4a",
-					".ogg"
-				]
-			},
-			"global": true
-		},
 		"bgm_near_timeout": {
 			"type": "audio",
 			"path": "audio/bgm_near_timeout",
@@ -390,6 +377,58 @@
 			"path": "audio/special_attack",
 			"systemId": "sound",
 			"duration": 2247,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			},
+			"global": true
+		},
+		"hit": {
+			"type": "audio",
+			"path": "audio/hit",
+			"systemId": "sound",
+			"duration": 528,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			},
+			"global": true
+		},
+		"item": {
+			"type": "audio",
+			"path": "audio/item",
+			"systemId": "sound",
+			"duration": 915,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			},
+			"global": true
+		},
+		"se_gameover": {
+			"type": "audio",
+			"path": "audio/se_gameover",
+			"systemId": "sound",
+			"duration": 5068,
+			"hint": {
+				"extensions": [
+					".m4a",
+					".ogg"
+				]
+			},
+			"global": true
+		},
+		"shot": {
+			"type": "audio",
+			"path": "audio/shot",
+			"systemId": "sound",
+			"duration": 813,
 			"hint": {
 				"extensions": [
 					".m4a",

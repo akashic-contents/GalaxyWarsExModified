@@ -70,7 +70,7 @@ export function createGameScene(): g.Scene {
             if (!showResultUI && Global.gameCore.player.hp <= 0) {
                 // ゲームオーバー処理なのでここでゲームオーバー用BGM(ループなし)を鳴らす
                 stageBgm.stop();
-                g.game.scene().asset.getAudioById("bgm_gameover").play();
+                g.game.scene().asset.getAudioById("se_gameover").play();
 
                 scene.onPointDownCapture.removeAll();
                 scene.onPointMoveCapture.removeAll();

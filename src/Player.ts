@@ -99,6 +99,8 @@ export class Player {
                 Global.gameCore.itemGaugeTray.addItem(e.itemType, effectTime, getter);
             }
             Global.gameCore.itemGaugeTray.showItemName(e.itemType);
+            const itemSe = g.game.scene().asset.getAudioById("item").play();
+            itemSe.changeVolume(0.5);
         } else {
             Global.gameCore.vibrationCntr = 10;
             for (let i = 0; i < 3; i++) {
@@ -162,6 +164,8 @@ export class Player {
                 imageAsset: g.game.scene().asset.getImageById("missle")
             });
             Global.gameCore.entities.push(b);
+            const shotSe = g.game.scene().asset.getAudioById("shot").play();
+            shotSe.changeVolume(0.2);
         }
 
         this.spr.x = this.pos.x;
